@@ -54,6 +54,15 @@ class ViewController: UIViewController {
         button.addTarget(self, action: #selector(directionButtonsPressed(sender:)), for: .touchUpInside)
         return button
     }()
+    lazy var rightButton: UIButton = {
+        var button = UIButton()
+        button.setTitle("Move Circle Right", for: .normal)
+        button.backgroundColor = #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.tag = 3
+        button.addTarget(self, action: #selector(directionButtonsPressed(sender:)), for: .touchUpInside)
+        return button
+    }()
     var animationTimeView = AnimationTimeView()
     var distanceView = DistanceView()
     
@@ -66,6 +75,7 @@ class ViewController: UIViewController {
         self.view.addSubview(animationTimeView)
         self.view.addSubview(distanceView)
         self.view.addSubview(leftButton)
+        self.view.addSubview(rightButton)
         
     }
     private func setConstraints() {
@@ -93,6 +103,9 @@ class ViewController: UIViewController {
         
         leftButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         leftButton.bottomAnchor.constraint(equalTo: animationTimeView.topAnchor).isActive = true
+        
+        rightButton.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        rightButton.bottomAnchor.constraint(equalTo: distanceView.topAnchor).isActive = true
     }
     
     private func addBehaviorToStepper() {
@@ -125,6 +138,10 @@ class ViewController: UIViewController {
         } else if sender.tag == 2 {
             UIView.animate(withDuration: self.animationTime, delay: 0.4, options: [], animations: {
                 self.circle.frame.origin.x -= CGFloat(self.distance / 2)
+            }, completion: nil)
+        } else if sender.tag == 3 {
+            UIView.animate(withDuration: self.animationTime, delay: 0.4, options: [], animations: {
+                self.circle.frame.origin.x += CGFloat(self.distance / 2)
             }, completion: nil)
         }
     }
