@@ -16,6 +16,8 @@
 		4DE3CA462350FF9E00940496 /* Animation_LabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE3CA452350FF9E00940496 /* Animation_LabTests.swift */; };
 		4DE3CA512351085300940496 /* AnimationTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE3CA502351085300940496 /* AnimationTimeView.swift */; };
 		4DE3CA532351136F00940496 /* DistanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE3CA522351136F00940496 /* DistanceView.swift */; };
+		4DFE465823512208007671E6 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFE465723512208007671E6 /* PickerView.swift */; };
+		4DFE465A23512455007671E6 /* StringToAnimationOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFE465923512455007671E6 /* StringToAnimationOption.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,8 @@
 		4DE3CA472350FF9E00940496 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DE3CA502351085300940496 /* AnimationTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTimeView.swift; sourceTree = "<group>"; };
 		4DE3CA522351136F00940496 /* DistanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceView.swift; sourceTree = "<group>"; };
+		4DFE465723512208007671E6 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		4DFE465923512455007671E6 /* StringToAnimationOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringToAnimationOption.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,8 @@
 				4DE3CA322350FF9C00940496 /* ViewController.swift */,
 				4DE3CA502351085300940496 /* AnimationTimeView.swift */,
 				4DE3CA522351136F00940496 /* DistanceView.swift */,
+				4DFE465723512208007671E6 /* PickerView.swift */,
+				4DFE465923512455007671E6 /* StringToAnimationOption.swift */,
 				4DE3CA342350FF9C00940496 /* Main.storyboard */,
 				4DE3CA372350FF9E00940496 /* Assets.xcassets */,
 				4DE3CA392350FF9E00940496 /* LaunchScreen.storyboard */,
@@ -207,7 +213,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DE3CA512351085300940496 /* AnimationTimeView.swift in Sources */,
+				4DFE465A23512455007671E6 /* StringToAnimationOption.swift in Sources */,
 				4DE3CA532351136F00940496 /* DistanceView.swift in Sources */,
+				4DFE465823512208007671E6 /* PickerView.swift in Sources */,
 				4DE3CA332350FF9C00940496 /* ViewController.swift in Sources */,
 				4DE3CA2F2350FF9C00940496 /* AppDelegate.swift in Sources */,
 				4DE3CA312350FF9C00940496 /* SceneDelegate.swift in Sources */,

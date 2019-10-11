@@ -65,6 +65,7 @@ class ViewController: UIViewController {
     }()
     var animationTimeView = AnimationTimeView()
     var distanceView = DistanceView()
+    var animationPicker = PickerView()
     
     
     //MARK: - Functions
@@ -76,6 +77,8 @@ class ViewController: UIViewController {
         self.view.addSubview(distanceView)
         self.view.addSubview(leftButton)
         self.view.addSubview(rightButton)
+        self.view.addSubview(animationPicker)
+        
         
     }
     private func setConstraints() {
@@ -106,6 +109,8 @@ class ViewController: UIViewController {
         
         rightButton.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         rightButton.bottomAnchor.constraint(equalTo: distanceView.topAnchor).isActive = true
+        
+        animationPicker.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor).isActive = true
     }
     
     private func addBehaviorToStepper() {
@@ -127,20 +132,23 @@ class ViewController: UIViewController {
         distance = sender.value
     }
     @objc func directionButtonsPressed(sender: UIButton) {
+        let pickerTitle = animationArray[animationPicker.selectedRow(inComponent: 0)]
+        let option = StringToAnimationOption(string: pickerTitle)
+        
         if sender.tag == 0 {
-            UIView.animate(withDuration: self.animationTime, delay: 0.4, options: [], animations: {
+            UIView.animate(withDuration: self.animationTime, delay: 0.4, options: option, animations: {
                 self.circle.frame.origin.y += CGFloat(self.distance)
             }, completion: nil)
         } else if sender.tag == 1 {
-            UIView.animate(withDuration: self.animationTime, delay: 0.4, options: [], animations: {
+            UIView.animate(withDuration: self.animationTime, delay: 0.4, options: option, animations: {
                 self.circle.frame.origin.y -= CGFloat(self.distance)
             }, completion: nil)
         } else if sender.tag == 2 {
-            UIView.animate(withDuration: self.animationTime, delay: 0.4, options: [], animations: {
+            UIView.animate(withDuration: self.animationTime, delay: 0.4, options: option, animations: {
                 self.circle.frame.origin.x -= CGFloat(self.distance / 2)
             }, completion: nil)
         } else if sender.tag == 3 {
-            UIView.animate(withDuration: self.animationTime, delay: 0.4, options: [], animations: {
+            UIView.animate(withDuration: self.animationTime, delay: 0.4, options: option, animations: {
                 self.circle.frame.origin.x += CGFloat(self.distance / 2)
             }, completion: nil)
         }
