@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     
     //MARK: - Properties
     lazy var animationTime: Double = self.animationTimeView.stepper.value
+    lazy var distance: Double = self.distanceView.stepper.value
     
     lazy var circle: UIView = {
         var view = UIView()
@@ -44,7 +45,17 @@ class ViewController: UIViewController {
         button.addTarget(self, action: #selector(directionButtonsPressed(sender:)), for: .touchUpInside)
         return button
     }()
+    lazy var leftButton: UIButton = {
+        var button = UIButton()
+        button.setTitle("Move Circle Left", for: .normal)
+        button.backgroundColor = #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.tag = 2
+        button.addTarget(self, action: #selector(directionButtonsPressed(sender:)), for: .touchUpInside)
+        return button
+    }()
     var animationTimeView = AnimationTimeView()
+    var distanceView = DistanceView()
     
     
     //MARK: - Functions
@@ -53,6 +64,8 @@ class ViewController: UIViewController {
         self.view.addSubview(downButton)
         self.view.addSubview(upButton)
         self.view.addSubview(animationTimeView)
+        self.view.addSubview(distanceView)
+        self.view.addSubview(leftButton)
         
     }
     private func setConstraints() {
@@ -68,13 +81,23 @@ class ViewController: UIViewController {
         upButton.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         upButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
+        
         animationTimeView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor, constant: 300).isActive = true
         animationTimeView.bottomAnchor.constraint(equalTo: downButton.topAnchor).isActive = true
         animationTimeView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        
+        distanceView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor, constant: 300).isActive = true
+        distanceView.bottomAnchor.constraint(equalTo: upButton.topAnchor).isActive = true
+        distanceView.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        distanceView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        
+        leftButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        leftButton.bottomAnchor.constraint(equalTo: animationTimeView.topAnchor).isActive = true
     }
     
     private func addBehaviorToStepper() {
         animationTimeView.stepper.addTarget(self, action: #selector(timeStepped(sender:)), for: .valueChanged)
+        distanceView.stepper.addTarget(self, action: #selector(distanceStepped(sender:)), for: .valueChanged)
     }
     private func setUI() {
         self.view.backgroundColor = .white
@@ -86,14 +109,22 @@ class ViewController: UIViewController {
         animationTimeView.label.text = "Time: \(round(sender.value * 100) / 100)"
         animationTime = sender.value
     }
+    @objc func distanceStepped(sender: UIStepper) {
+        distanceView.label.text = "Distance: \(Int(sender.value))"
+        distance = sender.value
+    }
     @objc func directionButtonsPressed(sender: UIButton) {
         if sender.tag == 0 {
             UIView.animate(withDuration: self.animationTime, delay: 0.4, options: [], animations: {
-                self.circle.frame.origin.y += 50
+                self.circle.frame.origin.y += CGFloat(self.distance)
             }, completion: nil)
-        } else {
+        } else if sender.tag == 1 {
             UIView.animate(withDuration: self.animationTime, delay: 0.4, options: [], animations: {
-                self.circle.frame.origin.y -= 50
+                self.circle.frame.origin.y -= CGFloat(self.distance)
+            }, completion: nil)
+        } else if sender.tag == 2 {
+            UIView.animate(withDuration: self.animationTime, delay: 0.4, options: [], animations: {
+                self.circle.frame.origin.x -= CGFloat(self.distance / 2)
             }, completion: nil)
         }
     }
