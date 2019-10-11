@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     //MARK: - Properties
-    
+    lazy var animationTime: Double = self.animationTimeView.stepper.value
     
     lazy var circle: UIView = {
         var view = UIView()
@@ -44,12 +44,16 @@ class ViewController: UIViewController {
         button.addTarget(self, action: #selector(directionButtonsPressed(sender:)), for: .touchUpInside)
         return button
     }()
+    var animationTimeView = AnimationTimeView()
+    
     
     //MARK: - Functions
     private func addSubviews() {
         self.view.addSubview(circle)
         self.view.addSubview(downButton)
         self.view.addSubview(upButton)
+        self.view.addSubview(animationTimeView)
+        
     }
     private func setConstraints() {
         circle.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor).isActive = true
@@ -59,22 +63,36 @@ class ViewController: UIViewController {
         
         downButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         downButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+       
         
         upButton.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         upButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        
+        animationTimeView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor, constant: 300).isActive = true
+        animationTimeView.bottomAnchor.constraint(equalTo: downButton.topAnchor).isActive = true
+        animationTimeView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+    }
+    
+    private func addBehaviorToStepper() {
+        animationTimeView.stepper.addTarget(self, action: #selector(timeStepped(sender:)), for: .valueChanged)
     }
     private func setUI() {
         self.view.backgroundColor = .white
         addSubviews()
         setConstraints()
+        addBehaviorToStepper()
+    }
+    @objc func timeStepped(sender: UIStepper) {
+        animationTimeView.label.text = "Time: \(round(sender.value * 100) / 100)"
+        animationTime = sender.value
     }
     @objc func directionButtonsPressed(sender: UIButton) {
         if sender.tag == 0 {
-            UIView.animate(withDuration: 1.5, delay: 0.4, options: [], animations: {
+            UIView.animate(withDuration: self.animationTime, delay: 0.4, options: [], animations: {
                 self.circle.frame.origin.y += 50
             }, completion: nil)
         } else {
-            UIView.animate(withDuration: 1.5, delay: 0.4, options: [], animations: {
+            UIView.animate(withDuration: self.animationTime, delay: 0.4, options: [], animations: {
                 self.circle.frame.origin.y -= 50
             }, completion: nil)
         }

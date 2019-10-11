@@ -14,6 +14,7 @@
 		4DE3CA382350FF9E00940496 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DE3CA372350FF9E00940496 /* Assets.xcassets */; };
 		4DE3CA3B2350FF9E00940496 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DE3CA392350FF9E00940496 /* LaunchScreen.storyboard */; };
 		4DE3CA462350FF9E00940496 /* Animation_LabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE3CA452350FF9E00940496 /* Animation_LabTests.swift */; };
+		4DE3CA512351085300940496 /* AnimationTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE3CA502351085300940496 /* AnimationTimeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		4DE3CA412350FF9E00940496 /* Animation-LabTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Animation-LabTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DE3CA452350FF9E00940496 /* Animation_LabTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation_LabTests.swift; sourceTree = "<group>"; };
 		4DE3CA472350FF9E00940496 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4DE3CA502351085300940496 /* AnimationTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTimeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				4DE3CA2E2350FF9C00940496 /* AppDelegate.swift */,
 				4DE3CA302350FF9C00940496 /* SceneDelegate.swift */,
 				4DE3CA322350FF9C00940496 /* ViewController.swift */,
+				4DE3CA502351085300940496 /* AnimationTimeView.swift */,
 				4DE3CA342350FF9C00940496 /* Main.storyboard */,
 				4DE3CA372350FF9E00940496 /* Assets.xcassets */,
 				4DE3CA392350FF9E00940496 /* LaunchScreen.storyboard */,
@@ -200,6 +203,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DE3CA512351085300940496 /* AnimationTimeView.swift in Sources */,
 				4DE3CA332350FF9C00940496 /* ViewController.swift in Sources */,
 				4DE3CA2F2350FF9C00940496 /* AppDelegate.swift in Sources */,
 				4DE3CA312350FF9C00940496 /* SceneDelegate.swift in Sources */,
